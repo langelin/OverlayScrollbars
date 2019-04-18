@@ -5533,7 +5533,7 @@
                         var isRTLisX = _isRTL && isX;
                         var normalizeShortcuts = isRTLisX && _rtlScrollBehavior.n && !normalizeRTL;
                         var strReplace = 'replace';
-                        var evalFunc = eval;
+                        // var evalFunc = eval;
                         if (isString) {
                             //check operator
                             if (rawScroll[strLength] > 2) {
@@ -5556,7 +5556,9 @@
                             rawScroll = rawScroll[strReplace](/%/g, mult + (maxScroll * (isRTLisX && _rtlScrollBehavior.n ? -1 : 1) / 100.0));
                             rawScroll = rawScroll[strReplace](/vw/g, mult + _viewportSize.w);
                             rawScroll = rawScroll[strReplace](/vh/g, mult + _viewportSize.h);
-                            amount = parseToZeroOrNumber(parseToZeroOrNumber(evalFunc(rawScroll), true).toFixed());
+                            // Do not support string values
+                            // removing the use of strings because of the eval function. http://www.w3.org/TR/CSP/, https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+                            // amount = parseToZeroOrNumber(parseToZeroOrNumber(evalFunc(rawScroll), true).toFixed());
                         }
                         else {
                             amount = rawScroll;
